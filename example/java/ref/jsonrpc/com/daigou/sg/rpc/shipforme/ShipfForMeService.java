@@ -16,7 +16,14 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
 public class ShipfForMeService {
+=======
+import java.util.ArrayList;
+import java.util.Map;
+
+public class PaymentService {
+>>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
 
@@ -121,7 +128,21 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
+=======
+                public void onResponse(String response) {
+                    try {
+                        TCreditCardInfo result;
+                        result = BaseModule.doFromJSON(response, TCreditCardInfo.class);
+
+                        listener.onResponse(result);
+                    } catch (Exception ex) {
+
+                        // Log.d("ex", ex.toString());
+                        // Log.d("jsonObject", response);
+
+>>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -153,7 +174,21 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
+=======
+                public void onResponse(String response) {
+                    try {
+                        TPaymentBillDetail result;
+                        result = BaseModule.doFromJSON(response, TPaymentBillDetail.class);
+
+                        listener.onResponse(result);
+                    } catch (Exception ex) {
+
+                        // Log.d("ex", ex.toString());
+                        // Log.d("jsonObject", response);
+
+>>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -489,7 +524,21 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
+=======
+                public void onResponse(String response) {
+                    try {
+                        TPrimePaymentSummary result;
+                        result = BaseModule.doFromJSON(response, TPrimePaymentSummary.class);
+
+                        listener.onResponse(result);
+                    } catch (Exception ex) {
+
+                        // Log.d("ex", ex.toString());
+                        // Log.d("jsonObject", response);
+
+>>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -562,7 +611,21 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
+=======
+                public void onResponse(String response) {
+                    try {
+                        TPrimePaymentResult result;
+                        result = BaseModule.doFromJSON(response, TPrimePaymentResult.class);
+
+                        listener.onResponse(result);
+                    } catch (Exception ex) {
+
+                        // Log.d("ex", ex.toString());
+                        // Log.d("jsonObject", response);
+
+>>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }

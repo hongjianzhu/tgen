@@ -15,6 +15,11 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
+<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab
+=======
+import java.util.ArrayList;
+import java.util.Map;
+>>>>>>> modify java template: add import
 
 public class ShipfForMeService {
     private static final Gson gson = GsonUtils.getGsonInstance();

@@ -13,6 +13,8 @@ import com.daigou.model.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Map;
 
 {{ $js := . -}}
 public class {{ .Service.Name}}Service {
@@ -63,8 +65,41 @@ public class {{ .Service.Name}}Service {
         java.util.HashMap<String, Object> args = null;
         {{- end }}
 
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args);
-        TRpc.getInstance().getQueue().add(req);
+                        listener.onResponse(result);
+                    } catch (Exception ex) {
+
+                        // Log.d("ex", ex.toString());
+                        // Log.d("jsonObject", response);
+
+                        listener.onResponse(null);
+                    }
+                    {{- else -}}
+                    if (listener != null) {
+                        listener.onResponse(null);
+                    }
+                    {{- end }}
+                }
+            }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onResponse(null);
+            }
+        }) {
+            @Override
+            public byte[] getBody() {
+                {{- if $method.Arguments }}
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+                {{- range $arg := $method.Arguments }}
+                msg.put("{{ $js.FilterVariableName $arg.Name }}", {{ $js.FilterVariableName $arg.Name }});
+                {{- end }}
+
+                return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
+                {{- else }}
+                return "".getBytes(Charset.forName("UTF-8"));
+                {{- end }}
+            }
+        };
+        TRpc.getQueue().add(req);
         return req;
     }
 {{ end -}}
