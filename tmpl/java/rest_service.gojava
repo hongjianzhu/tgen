@@ -18,9 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
-{{ $js := . -}}
+import java.util.Map;
 
+{{ $js := . -}}
 public class {{ .Service.Name}}Service {
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
@@ -65,10 +65,10 @@ public class {{ .Service.Name}}Service {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                     {{- else -}}
