@@ -1,6 +1,7 @@
-package com.daigou.sg.rpc.shipforme;
+package com.daigou.sg.rpc.tpackage;
 
 import com.daigou.sg.rpc.BaseModule;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,8 +13,8 @@ import java.util.Map;
  * Don't change manually
  */
 
-public class TShipformeOrderBill extends BaseModule<TShipformeOrderBill> implements Serializable {
-    public boolean couponUsed;
-    public String couponErrorMessage;
+public class TInvoice extends BaseModule<TInvoice> implements Serializable {
+	@SerializedName("package")
+    public TPackage tPackage;
     public com.daigou.sg.rpc.payment.TPaymentBill paymentBill;
 }
