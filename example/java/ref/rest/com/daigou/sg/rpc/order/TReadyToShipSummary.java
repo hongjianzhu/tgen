@@ -1,4 +1,4 @@
-package com.daigou.sg.rpc.shipforme;
+package com.daigou.sg.rpc.order;
 
 import com.daigou.sg.rpc.BaseModule;
 
@@ -12,8 +12,9 @@ import java.util.Map;
  * Don't change manually
  */
 
-public class TShipformeOrderBill extends BaseModule<TShipformeOrderBill> implements Serializable {
-    public boolean couponUsed;
-    public String couponErrorMessage;
+public class TReadyToShipSummary extends BaseModule<TReadyToShipSummary> implements Serializable {
+    public int arrivedCount;
+    public int notArrivedCount;
+    public ArrayList<TOrder> orders;
     public com.daigou.sg.rpc.payment.TPaymentBill paymentBill;
 }

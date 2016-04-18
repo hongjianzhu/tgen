@@ -1,4 +1,4 @@
-package com.daigou.sg.rpc.shipforme;
+package com.daigou.sg.rpc.order;
 
 import com.daigou.sg.rpc.BaseModule;
 
@@ -12,7 +12,9 @@ import java.util.Map;
  * Don't change manually
  */
 
-public class TVendorName extends BaseModule<TVendorName> implements Serializable {
+public class TArrivedOrderSummary extends BaseModule<TArrivedOrderSummary> implements Serializable {
     public String shipmentTypeCode;
-    public String shipmentTypeName;
+    public String altShipmentTypeName;
+    public int arrivedCount;
+    public int notArrivedCount;
 }

@@ -1,4 +1,4 @@
-package com.daigou.sg.rpc.shipforme;
+package com.daigou.sg.rpc.order;
 
 import com.daigou.sg.rpc.BaseModule;
 
@@ -12,7 +12,9 @@ import java.util.Map;
  * Don't change manually
  */
 
-public class TVendorName extends BaseModule<TVendorName> implements Serializable {
-    public String shipmentTypeCode;
-    public String shipmentTypeName;
+public class TOrderItem extends BaseModule<TOrderItem> implements Serializable {
+    public String sku;
+    public String skuPrice;
+    public String localSkuPrice;
+    public int qty;
 }
