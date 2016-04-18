@@ -18,7 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
+
 public class PaymentService {
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
@@ -43,10 +44,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -82,10 +83,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -118,10 +119,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -151,10 +152,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -187,10 +188,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -225,10 +226,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -258,10 +259,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -291,10 +292,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -324,10 +325,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -357,10 +358,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -399,10 +400,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -438,10 +439,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -471,10 +472,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -507,10 +508,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -543,10 +544,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
