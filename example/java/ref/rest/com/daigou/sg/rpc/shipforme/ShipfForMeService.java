@@ -200,7 +200,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeHomeSummary(final Listener<TShipForMeOrderHomeSummary> listener) {
+    public static RpcRequest UserGetShipForMeHomeSummary(final TShipType shipType, final Listener<TShipForMeOrderHomeSummary> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "ShipfForMe/UserGetShipForMeHomeSummary",
             new Response.Listener<String>() {
                 @Override
@@ -226,7 +226,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                return "".getBytes(Charset.forName("UTF-8"));
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+                msg.put("shipType", shipType);
+
+                return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
         };
         TRpc.getQueue().add(req);
@@ -352,7 +355,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeSummary(final String originCode, final Listener<TShipForMeOrderSummary> listener) {
+    public static RpcRequest UserGetShipForMeSummary(final com.daigou.sg.rpc.payment.TPaymentType paymentType, final Listener<TShipForMeOrderSummary> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "ShipfForMe/UserGetShipForMeSummary",
             new Response.Listener<String>() {
                 @Override
@@ -379,7 +382,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
-                msg.put("originCode", originCode);
+                msg.put("paymentType", paymentType);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
