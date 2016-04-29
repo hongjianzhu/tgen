@@ -9,10 +9,15 @@ namespace java com.daigou.sg.rpc.shipforme
 
 include "Payment.thrift"
 
+enum TShipType {
+    AA = 1
+    BB = 2
+}
+
 struct TShipForMeOrderHomeSummary {
 	1:required i32 cnCount;			//中国订单数
-	2:required i32 twCount;			//台湾订单数
-	3:required i32 usCount;			//美国订单数
+	2:required TShipType shipType;
+	3:required Payment.TPaymentType paymentType;
 }
 
 struct TShipForMeOrderSummary {
@@ -53,7 +58,7 @@ struct TShipForMeOrder {
 }
 
 struct TVendorName {
-	1:required string shipmentTypeCode;			//运输方式编号	
+	1:required string shipmentTypeCode;			//运输方式编号
 	2:required string shipmentTypeName;			//运输方式名
 }
 
@@ -70,23 +75,14 @@ struct TShipformeOrderBill {
 	1:required bool couponUsed;						//折扣券是否可使用
 	2:required string couponErrorMessage;			//折扣券错误信息
 	3:required Payment.TPaymentBill paymentBill;		//发货账单列表
-	
+
 }
 
 service ShipfForMe {
 
-	/// <summary>
-	/// 获取各地区订单数
-	/// </summary>
-	/// <returns>各地区订单数</returns>
-	TShipForMeOrderHomeSummary UserGetShipForMeHomeSummary(),
+	TShipForMeOrderHomeSummary UserGetShipForMeHomeSummary(1:TShipType shipType),
 
-	/// <summary>
-	/// 获取各状态订单数
-	/// </summary>
-	/// <param name="originCode">采购国家</param>
-	/// <returns>各状态订单数</returns>
-	TShipForMeOrderSummary UserGetShipForMeSummary(1:string originCode),
+	TShipForMeOrderSummary UserGetShipForMeSummary(1:Payment.TPaymentType paymentType),
 
 	/// <summary>
 	/// 根据状态获取订单列表
@@ -181,7 +177,7 @@ service ShipfForMe {
 	/// <param name="orderIds">订单id</param>
 	/// <param name="price">申报价</param>
 	void UserSaveShipForMeOrderPrice(1:string orderIds, 2:double price),
-	
+
 	/// <summary>
 	/// 获取订单发货账单
 	/// </summary>
