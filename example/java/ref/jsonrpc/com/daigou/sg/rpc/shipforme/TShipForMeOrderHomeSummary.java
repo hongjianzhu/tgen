@@ -13,6 +13,6 @@ import java.util.ArrayList;
 
 public class TShipForMeOrderHomeSummary extends BaseModule<TShipForMeOrderHomeSummary> implements Serializable {
     public int cnCount;
-    public int twCount;
-    public int usCount;
+    public TShipType shipType;
+    public com.daigou.sg.rpc.payment.TPaymentType paymentType;
 }
