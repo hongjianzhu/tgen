@@ -18,8 +18,12 @@ import java.nio.charset.Charset;
 <<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1
 =======
 import java.util.ArrayList;
+<<<<<<< 392a8a2f3c6c24710bc28cc677435ecb721b9830
 import java.util.Map;
 >>>>>>> modify java template: add import
+=======
+import java.util.HashMap;
+>>>>>>> change generated source files
 
 public class ShipfForMeService {
     private static final Gson gson = GsonUtils.getGsonInstance();

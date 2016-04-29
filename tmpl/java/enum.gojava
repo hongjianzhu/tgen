@@ -9,16 +9,12 @@ import com.google.gson.annotations.SerializedName;
 
 {{ $data := . -}}
 
-<<<<<<< 0219ed71390b275b0691d2c0fa1dec974d871743
-public enum {{.Enum.Name}} implements java.io.Serializable, com.daigou.sg.rpc.DeserializerEnum {
-{{.GenerateProperties}}
-=======
 public enum {{.Enum.Name}} {
 {{- range $key, $value := .Enum.Values}}
 	@SerializedName("{{$value.Value}}")
 	{{ToUpper $value.Name}}({{$value.Value}});
 {{- end}}
->>>>>>> add enum support
+{{.GenerateProperties}}
 
 	int type;
 
@@ -28,15 +24,6 @@ public enum {{.Enum.Name}} {
 
 	@Override
     public String toString() {
-<<<<<<< 0219ed71390b275b0691d2c0fa1dec974d871743
-        return Integer.toString(type);
-    }
-
-    @Override
-    public int getValue() {
-        return type;
-=======
         return String.valueOf(type);
->>>>>>> add enum support
     }
 }

@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 public class ShipfForMeService {
 =======
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class PaymentService {
 >>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
