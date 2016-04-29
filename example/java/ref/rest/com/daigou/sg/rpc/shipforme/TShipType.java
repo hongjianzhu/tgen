@@ -18,11 +18,15 @@ public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.Deseria
 =======
 public enum TShipType {
 	@SerializedName("1")
-	AA(1);
+	AA(1),
 	@SerializedName("2")
 	BB(2);
 
+<<<<<<< 392a8a2f3c6c24710bc28cc677435ecb721b9830
 >>>>>>> modify generated source files
+=======
+
+>>>>>>> change generated source files
 	int type;
 
     TShipType(int type) {
