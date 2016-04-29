@@ -314,37 +314,11 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 	}
 
 	// key is the absoule path of thrift file
-	for f, t := range parsedThrift {
-		if f != global.InputFile {
-			continue // ignore
-		}
+	for _, t := range parsedThrift {
+		// due to java's features,
+		// we generate the struct and service in seperate template file
 
-		ns := t.Namespaces[javaLang]
-
-		if len(t.Enums) > 0 {
-			log.Printf("## enums")
-
-			for _, e := range t.Enums {
-				name := e.Name + javaExt
-
-				// fix java file path
-				p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
-				if err := os.MkdirAll(p, 0755); err != nil {
-					panic(fmt.Errorf("failed to create output directory %s", p))
-				}
-
-				path := filepath.Join(p, name)
-
-				base := BaseJava{Namespace: ns, t: t, ts: parsedThrift}
-				data := &javaEnum{BaseJava: &base, Enum: e}
-
-				if err := outputfile(path, enumTpl, TPL_ENUM, data); err != nil {
-					panic(fmt.Errorf("failed to write file %s. error: %v\n", path, err))
-				}
-
-				log.Printf("%s", path)
-			}
-		}
+		ns := t.Namespaces["java"]
 
 		log.Printf("## structs")
 
