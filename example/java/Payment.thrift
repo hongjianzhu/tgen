@@ -12,6 +12,12 @@ namespace javascript TRPC
 include "Package.thrift"
 include "Order.thrift"
 
+enum TPaymentType {
+    Product = 1
+    Parcel = 2
+    Other = 3
+}
+
 struct TPaymentSummary {
 	1:required double amountAvailable;			//可用余额
 	2:required double rebateAmountAvailable;	//可用返利余额
@@ -72,37 +78,37 @@ struct TCreditCardInfo {
 }
 
 struct TPayParcelPaymentResult {
-	1:required bool Result;		
-	2:required string Message;	
-	3:required string PaymentType;	
+	1:required bool Result;
+	2:required string Message;
+	3:required string PaymentType;
 	4:required bool NeedTopUp;
 }
 
 struct TPrimePaymentSummary {
-	1:required list<TPrimeType> primeTypes;		
-	2:required string tip;	
-	3:required string prepay;	
+	1:required list<TPrimeType> primeTypes;
+	2:required string tip;
+	3:required string prepay;
 	4:required bool isPrimeMonthlyBought;
 	5:required bool isPrimeYearlyBought;
 }
 
 struct TPrimeType {
-	1:required string primeTypeName;		
-	2:required string price;	
+	1:required string primeTypeName;
+	2:required string price;
 }
 
 struct TPrimePaymentResult {
-	1:required bool result;		
-	2:required string message;	
-	3:required string paymentType;	
-	4:required bool needTopUp;	
-	5:required list<string> paymentNumber; 
-	6:required bool hasOtherUnpaid;	
+	1:required bool result;
+	2:required string message;
+	3:required string paymentType;
+	4:required bool needTopUp;
+	5:required list<string> paymentNumber;
+	6:required bool hasOtherUnpaid;
 	7:required list<i32> paymentId;
 }
 
 service Payment {
-	
+
 	/// <summary>
 	/// 获取用户付款统计
 	/// </summary>
@@ -189,20 +195,20 @@ service Payment {
 	/// <param name="telephone">电话</param>
 	/// <returns>信用卡充值请求链接</returns>
 	string UserDoCreditCardTopUp(1:double total, 2:double creditCardFee, 3:list<string> paymentIds, 4:string telephone),
-	
+
 	/// <summary>
 	/// 根据pending payment的包裹Id付款
 	/// </summary>
 	/// <param name="PaymentBillId">包裹Id</param>
 	/// <returns>是否成功</returns>
 	TPayParcelPaymentResult UserPayParcelPayment(1:list<i32> paymentBillIds),
-	
+
 	/// <summary>
 	/// 获取Prime的支付内容
 	/// </summary>
 	/// <returns>Prime的支付内容</returns>
 	TPrimePaymentSummary UserGetPrimePaymentSummary(),
-	
+
 	/// <summary>
 	/// 根据Prime类型付款
 	/// </summary>
