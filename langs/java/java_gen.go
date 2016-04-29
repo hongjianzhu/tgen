@@ -36,6 +36,7 @@ const (
 )
 
 const (
+	TPL_ENUM    = "tgen/java/enum"
 	TPL_STRUCT  = "tgen/java/struct"
 	TPL_SERVICE = "tgen/java/service"
 )
@@ -189,6 +190,11 @@ func (this *BaseJava) GetInnerType(t *parser.Type) string {
 	return this.ObjectTypecast(t)
 }
 
+type javaEnum struct {
+	*BaseJava
+	*parser.Enum
+}
+
 type javaStruct struct {
 	*BaseJava
 	*parser.Struct
@@ -219,9 +225,6 @@ func (g *JavaGen) Generate(output string, parsedThrift map[string]*parser.Thrift
 	} else {
 		generateAll(g, output, parsedThrift)
 	}
-
-	// generatejsonrpc(filepath.Join(output, "jsonrpc"), parsedThrift)
-	// genraterest(filepath.Join(output, "rest"), parsedThrift)
 }
 
 func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[string]*parser.Thrift) {
@@ -236,14 +239,16 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 	}
 
 	// init templates
-	var structpl *template.Template
-	var servicetpl *template.Template
+	enumTpl := initemplate(TPL_ENUM, "tmpl/java/enum.gojava")
+
+	var structTpl *template.Template
+	var serviceTpl *template.Template
 	if m == global.MODE_REST {
-		structpl = initemplate(TPL_STRUCT, "tmpl/java/rest_struct.gojava")
-		servicetpl = initemplate(TPL_SERVICE, "tmpl/java/rest_service.gojava")
+		structTpl = initemplate(TPL_STRUCT, "tmpl/java/rest_struct.gojava")
+		serviceTpl = initemplate(TPL_SERVICE, "tmpl/java/rest_service.gojava")
 	} else if m == global.MODE_JSONRPC {
-		structpl = initemplate(TPL_STRUCT, "tmpl/java/jsonrpc_struct.gojava")
-		servicetpl = initemplate(TPL_SERVICE, "tmpl/java/jsonrpc_service.gojava")
+		structTpl = initemplate(TPL_STRUCT, "tmpl/java/jsonrpc_struct.gojava")
+		serviceTpl = initemplate(TPL_SERVICE, "tmpl/java/jsonrpc_service.gojava")
 	}
 
 	// key is the absoule path of thrift file
@@ -252,6 +257,31 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 		// we generate the struct and service in seperate template file
 
 		ns := t.Namespaces["java"]
+
+		if len(t.Enums) > 0 {
+			log.Printf("## enums")
+
+			for _, e := range t.Enums {
+				name := e.Name + ".java"
+
+				// fix java file path
+				p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
+				if err := os.MkdirAll(p, 0755); err != nil {
+					panic(fmt.Errorf("failed to create output directory %s", p))
+				}
+
+				path := filepath.Join(p, name)
+
+				base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
+				data := &javaEnum{BaseJava: &base, Enum: e}
+
+				if err := outputfile(path, enumTpl, TPL_ENUM, data); err != nil {
+					panic(fmt.Errorf("failed to write file %s. error: %v\n", path, err))
+				}
+
+				log.Printf("%s", path)
+			}
+		}
 
 		log.Printf("## structs")
 
@@ -270,7 +300,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 			base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
 			data := &javaStruct{BaseJava: &base, Struct: s}
 
-			if err := outputfile(path, structpl, TPL_STRUCT, data); err != nil {
+			if err := outputfile(path, structTpl, TPL_STRUCT, data); err != nil {
 				panic(fmt.Errorf("failed to write file %s. error: %v\n", path, err))
 			}
 
@@ -294,7 +324,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 			base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
 			data := &javaService{BaseJava: &base, Service: s}
 
-			if err := outputfile(path, servicetpl, TPL_SERVICE, data); err != nil {
+			if err := outputfile(path, serviceTpl, TPL_SERVICE, data); err != nil {
 				panic(fmt.Errorf("failed to write file %s. error: %v\n", path, err))
 			}
 
@@ -309,7 +339,15 @@ func initemplate(n string, path string) *template.Template {
 		panic(err)
 	}
 
-	tpl, err := template.New(n).Parse(string(data))
+	tpl := template.New(n)
+
+	// register functions
+	funcMap := template.FuncMap{
+		"ToUpper": strings.ToUpper,
+	}
+	tpl.Funcs(funcMap)
+
+	_, err = tpl.Parse(string(data))
 	if err != nil {
 		panic(err)
 	}
