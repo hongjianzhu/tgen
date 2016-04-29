@@ -224,7 +224,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeHomeSummary(final Listener<TShipForMeOrderHomeSummary> listener) {
+    public static RpcRequest UserGetShipForMeHomeSummary(final TShipType shipType, final Listener<TShipForMeOrderHomeSummary> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -251,6 +251,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 final ArrayList<Object> params = new ArrayList<>();
+                params.add(shipType);
 
                 HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
@@ -398,7 +399,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeSummary(final String originCode, final Listener<TShipForMeOrderSummary> listener) {
+    public static RpcRequest UserGetShipForMeSummary(final com.daigou.sg.rpc.payment.TPaymentType paymentType, final Listener<TShipForMeOrderSummary> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -425,7 +426,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 final ArrayList<Object> params = new ArrayList<>();
-                params.add(originCode);
+                params.add(paymentType);
 
                 HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
