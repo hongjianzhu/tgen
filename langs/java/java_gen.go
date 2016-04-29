@@ -247,15 +247,11 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 	}
 
 	// key is the absoule path of thrift file
-	for tf, t := range parsedThrift {
+	for _, t := range parsedThrift {
 		// due to java's features,
 		// we generate the struct and service in seperate template file
 
-		ns, ok := t.Namespaces["java"]
-		if !ok {
-			fmt.Fprintf(os.Stderr, "error: namespace not found in file[%s] of language[java]\n", tf)
-			return
-		}
+		ns := t.Namespaces["java"]
 
 		log.Printf("## structs")
 
