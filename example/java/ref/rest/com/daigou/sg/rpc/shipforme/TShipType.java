@@ -7,12 +7,11 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
-public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.DeserializerEnum {
+public enum TShipType {
 	@SerializedName("1")
-	AA(1),
+	AA(1);
 	@SerializedName("2")
 	BB(2);
-
 
 	int type;
 
@@ -22,11 +21,6 @@ public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.Deseria
 
 	@Override
     public String toString() {
-        return Integer.toString(type);
-    }
-
-    @Override
-    public int getValue() {
-        return type;
+        return String.valueOf(type);
     }
 }

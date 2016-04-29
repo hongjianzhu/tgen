@@ -1,4 +1,4 @@
-package com.daigou.sg.rpc.shipforme;
+package com.daigou.sg.rpc.payment;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,15 +7,17 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
-public enum TShipType {
-	@SerializedName("1")
-	AA(1);
+public enum TPaymentType {
+	@SerializedName("3")
+	OTHER(3);
 	@SerializedName("2")
-	BB(2);
+	PARCEL(2);
+	@SerializedName("1")
+	PRODUCT(1);
 
 	int type;
 
-    TShipType(int type) {
+    TPaymentType(int type) {
         this.type = type;
     }
 

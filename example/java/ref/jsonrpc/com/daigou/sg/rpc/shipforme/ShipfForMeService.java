@@ -15,15 +15,11 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
-public class ShipfForMeService {
-=======
 import java.util.ArrayList;
-import java.util.Map;
-
-public class PaymentService {
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+public class ShipfForMeService {
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
 
@@ -36,21 +32,21 @@ public class PaymentService {
         return Integer.toString(msgID);
     }
 
-    public static RpcRequest GetCourierCompaniesByRegion(final String originCode, final Listener<java.util.ArrayList<String>> listener) {
+    public static RpcRequest GetCourierCompaniesByRegion(final String originCode, final Listener<ArrayList<String>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        java.util.ArrayList<String> result;
+                        ArrayList<String> result;
                         result = BaseModule.fromJSONArray(response, String.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -62,10 +58,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(originCode);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.GetCourierCompaniesByRegion");
                 msg.put("params", params);
@@ -88,10 +84,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -103,7 +99,7 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(warehouseCode);
                 params.add(shipperName);
                 params.add(wayBill);
@@ -112,7 +108,7 @@ public class PaymentService {
                 params.add(originCode);
                 params.add(repack);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserAddNewShipForMeOrder");
                 msg.put("params", params);
@@ -128,21 +124,7 @@ public class PaymentService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TCreditCardInfo result;
-                        result = BaseModule.doFromJSON(response, TCreditCardInfo.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -154,11 +136,11 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(confirm);
                 params.add(orderId);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserConfirmShipForMeRepack");
                 msg.put("params", params);
@@ -174,21 +156,7 @@ public class PaymentService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPaymentBillDetail result;
-                        result = BaseModule.doFromJSON(response, TPaymentBillDetail.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -200,10 +168,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderId);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserDeleteShipForMeOrder");
                 msg.put("params", params);
@@ -215,21 +183,21 @@ public class PaymentService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeAddressByRegion(final String originCode, final Listener<java.util.ArrayList<TShipformeAddress>> listener) {
+    public static RpcRequest UserGetShipForMeAddressByRegion(final String originCode, final Listener<ArrayList<TShipformeAddress>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        java.util.ArrayList<TShipformeAddress> result;
+                        ArrayList<TShipformeAddress> result;
                         result = BaseModule.fromJSONArray(response, TShipformeAddress.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -241,10 +209,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(originCode);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeAddressByRegion");
                 msg.put("params", params);
@@ -267,10 +235,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -282,10 +250,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(shipType);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeHomeSummary");
                 msg.put("params", params);
@@ -308,10 +276,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -323,10 +291,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderId);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderDetailByOrderId");
                 msg.put("params", params);
@@ -338,7 +306,7 @@ public class PaymentService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeOrderFeeByOrderIds(final java.util.ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<TShipformeOrderBill> listener) {
+    public static RpcRequest UserGetShipForMeOrderFeeByOrderIds(final ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<TShipformeOrderBill> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -349,10 +317,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -364,7 +332,7 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderIds);
                 params.add(insured);
                 params.add(deliveryMethod);
@@ -374,7 +342,7 @@ public class PaymentService {
                 params.add(warehouseCode);
                 params.add(couponCode);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderFeeByOrderIds");
                 msg.put("params", params);
@@ -386,21 +354,21 @@ public class PaymentService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeOrderListByStatus(final String originCode, final String warehouseCode, final String status, final int offset, final int limit, final Listener<java.util.ArrayList<TShipForMeOrder>> listener) {
+    public static RpcRequest UserGetShipForMeOrderListByStatus(final String originCode, final String warehouseCode, final String status, final int offset, final int limit, final Listener<ArrayList<TShipForMeOrder>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        java.util.ArrayList<TShipForMeOrder> result;
+                        ArrayList<TShipForMeOrder> result;
                         result = BaseModule.fromJSONArray(response, TShipForMeOrder.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -412,14 +380,14 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(originCode);
                 params.add(warehouseCode);
                 params.add(status);
                 params.add(offset);
                 params.add(limit);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderListByStatus");
                 msg.put("params", params);
@@ -442,10 +410,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -457,10 +425,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(paymentType);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeSummary");
                 msg.put("params", params);
@@ -472,7 +440,7 @@ public class PaymentService {
         return req;
     }
 
-    public static RpcRequest UserPackShipForMeOrder(final java.util.ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<Integer> listener) {
+    public static RpcRequest UserPackShipForMeOrder(final ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<Integer> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -483,10 +451,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -498,7 +466,7 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderIds);
                 params.add(insured);
                 params.add(deliveryMethod);
@@ -508,7 +476,7 @@ public class PaymentService {
                 params.add(warehouseCode);
                 params.add(couponCode);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserPackShipForMeOrder");
                 msg.put("params", params);
@@ -524,21 +492,7 @@ public class PaymentService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPrimePaymentSummary result;
-                        result = BaseModule.doFromJSON(response, TPrimePaymentSummary.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -550,11 +504,11 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderIds);
                 params.add(price);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserSaveShipForMeOrderPrice");
                 msg.put("params", params);
@@ -577,10 +531,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -592,10 +546,10 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(phoneNumber);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserSendToTelephone");
                 msg.put("params", params);
@@ -611,21 +565,7 @@ public class PaymentService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 04590f78f9cc8bc308df4f01ef1a8e6d8d3535ab:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPrimePaymentResult result;
-                        result = BaseModule.doFromJSON(response, TPrimePaymentResult.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -637,7 +577,7 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(orderId);
                 params.add(warehouseCode);
                 params.add(shipperName);
@@ -646,7 +586,7 @@ public class PaymentService {
                 params.add(takePhoto);
                 params.add(repack);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserUpdateShipForMeOrder");
                 msg.put("params", params);
@@ -669,10 +609,10 @@ public class PaymentService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-
+                         
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-
+                         
                         listener.onResponse(null);
                     }
                 }
@@ -684,11 +624,11 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+                final ArrayList<Object> params = new ArrayList<>();
                 params.add(phoneNumber);
                 params.add(validationCode);
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
+                HashMap<String, Object> msg = new HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserValidationPhone");
                 msg.put("params", params);
