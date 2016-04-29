@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class ShipfForMeService {
     private static final Gson gson = GsonUtils.getGsonInstance();
