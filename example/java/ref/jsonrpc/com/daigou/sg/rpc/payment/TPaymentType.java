@@ -8,12 +8,13 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public enum TPaymentType {
+	@SerializedName("1")
+	PRODUCT(1),
+	@SerializedName("2")
+	PARCEL(2),
 	@SerializedName("3")
 	OTHER(3);
-	@SerializedName("2")
-	PARCEL(2);
-	@SerializedName("1")
-	PRODUCT(1);
+
 
 	int type;
 
