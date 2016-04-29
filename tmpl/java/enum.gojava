@@ -10,10 +10,7 @@ import com.google.gson.annotations.SerializedName;
 {{ $data := . -}}
 
 public enum {{.Enum.Name}} {
-{{- range $key, $value := .Enum.Values}}
-	@SerializedName("{{$value.Value}}")
-	{{ToUpper $value.Name}}({{$value.Value}});
-{{- end}}
+{{.GenerateProperties}}
 
 	int type;
 
