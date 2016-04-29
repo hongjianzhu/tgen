@@ -71,14 +71,14 @@ type BaseJava struct {
 	ts        *map[string]*parser.Thrift
 }
 
-func (this *BaseJava) FilterVariableName(n string) string {
-	if this.IsKeyword(n) {
+func (b *BaseJava) FilterVariableName(n string) string {
+	if b.IsKeyword(n) {
 		return fmt.Sprintf("t%s%s", strings.ToUpper(n[:1]), n[1:])
 	}
 	return n
 }
 
-func (this *BaseJava) IsKeyword(n string) bool {
+func (b *BaseJava) IsKeyword(n string) bool {
 	switch n {
 	case "package", "int", "short", "long", "byte", "boolean", "case", "switch", "if ", "for", "else",
 		"goto", "Integer", "Short", "Long", "Byte", "Boolean", "class", "break", "try", "catch",
@@ -91,15 +91,15 @@ func (this *BaseJava) IsKeyword(n string) bool {
 	return false
 }
 
-func (this *BaseJava) PlainTypecast(t *parser.Type) string {
-	return this.typecast(t, true)
+func (b *BaseJava) PlainTypecast(t *parser.Type) string {
+	return b.typecast(t, true)
 }
 
-func (this *BaseJava) ObjectTypecast(t *parser.Type) string {
-	return this.typecast(t, false)
+func (b *BaseJava) ObjectTypecast(t *parser.Type) string {
+	return b.typecast(t, false)
 }
 
-func (this *BaseJava) typecast(t *parser.Type, isplain bool) string {
+func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 	if t == nil {
 		if isplain {
 			return "void"
@@ -122,19 +122,19 @@ func (this *BaseJava) typecast(t *parser.Type, isplain bool) string {
 
 	switch t.Name {
 	case langs.ThriftTypeList, langs.ThriftTypeSet:
-		return fmt.Sprintf("ArrayList<%s>", this.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("ArrayList<%s>", b.ObjectTypecast(t.ValueType))
 	case langs.ThriftTypeMap:
-		return fmt.Sprintf("Map<%s, %s>", this.ObjectTypecast(t.KeyType), this.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("Map<%s, %s>", b.ObjectTypecast(t.KeyType), b.ObjectTypecast(t.ValueType))
 	default:
 		s := strings.Split(t.Name, ".")
 		if len(s) == 1 {
 			return s[0]
 		} else if len(s) == 2 {
 			pkg := ""
-			for k, v := range this.t.Includes {
+			for k, v := range b.t.Includes {
 				if k == s[0] {
 
-					for p, t := range *this.ts {
+					for p, t := range *b.ts {
 						if v == p {
 							pkg = t.Namespaces["java"]
 							break
@@ -155,7 +155,7 @@ func (this *BaseJava) typecast(t *parser.Type, isplain bool) string {
 	}
 }
 
-func (this *BaseJava) AssembleParams(method *parser.Method) string {
+func (b *BaseJava) AssembleParams(method *parser.Method) string {
 	var buf bytes.Buffer
 
 	for i, arg := range method.Arguments {
@@ -163,7 +163,7 @@ func (this *BaseJava) AssembleParams(method *parser.Method) string {
 			buf.WriteString(", ")
 		}
 
-		buf.WriteString(fmt.Sprintf("final %s %s", this.PlainTypecast(arg.Type), this.FilterVariableName(arg.Name)))
+		buf.WriteString(fmt.Sprintf("final %s %s", b.PlainTypecast(arg.Type), b.FilterVariableName(arg.Name)))
 	}
 
 	if len(method.Arguments) == 0 {
@@ -172,27 +172,45 @@ func (this *BaseJava) AssembleParams(method *parser.Method) string {
 		buf.WriteString(", ")
 	}
 
-	buf.WriteString(fmt.Sprintf("final Listener<%s> listener", this.ObjectTypecast(method.ReturnType)))
+	buf.WriteString(fmt.Sprintf("final Listener<%s> listener", b.ObjectTypecast(method.ReturnType)))
 
 	return buf.String()
 }
 
-func (this *BaseJava) GetInnerType(t *parser.Type) string {
+func (b *BaseJava) GetInnerType(t *parser.Type) string {
 	if t == nil {
 		return "Void"
 	}
 
 	// map is ignored
 	if t.Name == langs.ThriftTypeList || t.Name == langs.ThriftTypeSet {
-		return this.GetInnerType(t.ValueType)
+		return b.GetInnerType(t.ValueType)
 	}
 
-	return this.ObjectTypecast(t)
+	return b.ObjectTypecast(t)
 }
 
 type javaEnum struct {
 	*BaseJava
 	*parser.Enum
+}
+
+func (e *javaEnum) GenerateProperties() string {
+	size := len(e.Enum.Values)
+	i := 0
+
+	var buf bytes.Buffer
+	for _, v := range e.Enum.Values {
+		buf.WriteString(fmt.Sprintf("\t@SerializedName(\"%d\")\n", v.Value))
+		buf.WriteString(fmt.Sprintf("\t%s(%d)", strings.ToUpper(v.Name), v.Value))
+		if i == size-1 {
+			buf.WriteString(";\n")
+		} else {
+			buf.WriteString(",\n")
+		}
+		i++
+	}
+	return buf.String()
 }
 
 type javaStruct struct {
