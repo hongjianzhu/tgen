@@ -57,8 +57,9 @@ gen-swift: gen-swift-rest gen-swift-jsonrpc
 clean:
 	go clean
 	rm -rf ./output-swift-rest
-	rm -rf javaoutputrest
-	rm -rf javaoutputjsonrpc
+	rm -rf ./output-swift-jsonrpc
+	rm -rf ./output-java-rest
+	rm -rf ./output-java-jsonrpc
 
 build:
 	go clean
