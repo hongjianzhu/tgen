@@ -61,8 +61,9 @@ genjavascriptrest: buildTpl
 clean:
 	go clean
 	rm -rf ./output-swift-rest
-	rm -rf javaoutputrest
-	rm -rf javaoutputjsonrpc
+	rm -rf ./output-swift-jsonrpc
+	rm -rf ./output-java-rest
+	rm -rf ./output-java-jsonrpc
 
 build: buildTpl
 	go clean
