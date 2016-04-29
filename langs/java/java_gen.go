@@ -257,6 +257,11 @@ func (e *javaEnum) GenerateProperties() string {
 	return buf.String()
 }
 
+type javaEnum struct {
+	*BaseJava
+	*parser.Enum
+}
+
 type javaStruct struct {
 	*BaseJava
 	*parser.Struct
@@ -319,6 +324,31 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 		// we generate the struct and service in seperate template file
 
 		ns := t.Namespaces["java"]
+
+		if len(t.Enums) > 0 {
+			log.Printf("## enums")
+
+			for _, e := range t.Enums {
+				name := e.Name + ".java"
+
+				// fix java file path
+				p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
+				if err := os.MkdirAll(p, 0755); err != nil {
+					panic(fmt.Errorf("failed to create output directory %s", p))
+				}
+
+				path := filepath.Join(p, name)
+
+				base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
+				data := &javaEnum{BaseJava: &base, Enum: e}
+
+				if err := outputfile(path, enumTpl, TPL_ENUM, data); err != nil {
+					panic(fmt.Errorf("failed to write file %s. error: %v\n", path, err))
+				}
+
+				log.Printf("%s", path)
+			}
+		}
 
 		log.Printf("## structs")
 
