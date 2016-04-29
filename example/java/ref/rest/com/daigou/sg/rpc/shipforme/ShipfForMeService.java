@@ -239,10 +239,15 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
                 
                 int shipTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) shipType).getValue();
                 msg.put("shipType", shipTypeValue);
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+                msg.put("shipType", shipType);
+>>>>>>> modify generated source files
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
@@ -410,10 +415,15 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
                 
                 int paymentTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) paymentType).getValue();
                 msg.put("paymentType", paymentTypeValue);
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+                msg.put("paymentType", paymentType);
+>>>>>>> modify generated source files
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }

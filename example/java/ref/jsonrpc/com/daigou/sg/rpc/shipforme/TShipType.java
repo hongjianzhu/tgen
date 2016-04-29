@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
 public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.DeserializerEnum {
 	@SerializedName("1")
 	AA(1),
@@ -14,6 +15,14 @@ public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.Deseria
 	BB(2);
 
 
+=======
+public enum TShipType {
+	@SerializedName("1")
+	AA(1);
+	@SerializedName("2")
+	BB(2);
+
+>>>>>>> modify generated source files
 	int type;
 
     TShipType(int type) {
@@ -22,11 +31,15 @@ public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.Deseria
 
 	@Override
     public String toString() {
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
         return Integer.toString(type);
     }
 
     @Override
     public int getValue() {
         return type;
+=======
+        return String.valueOf(type);
+>>>>>>> modify generated source files
     }
 }

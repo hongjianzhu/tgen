@@ -282,7 +282,11 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+=======
+                final ArrayList<Object> params = new ArrayList<>();
+>>>>>>> modify generated source files
                 params.add(shipType);
 
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
@@ -457,7 +461,11 @@ public class PaymentService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+=======
+                final ArrayList<Object> params = new ArrayList<>();
+>>>>>>> modify generated source files
                 params.add(paymentType);
 
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
