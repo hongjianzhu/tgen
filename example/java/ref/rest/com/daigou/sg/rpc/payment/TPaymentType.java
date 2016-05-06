@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
-public enum TPaymentType {
+public enum TPaymentType implements java.io.Serializable {
 	@SerializedName("1")
 	PRODUCT(1),
 	@SerializedName("2")
