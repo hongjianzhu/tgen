@@ -12,7 +12,7 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-        return
+	return
 	// 1 read thrift files from folder 'cases'
 	// 2 generate & output
 	// 3 read generated files, compared with corresponding files in folder 'test'
@@ -32,10 +32,6 @@ func TestGenerate(t *testing.T) {
 
 	visitfunc := func(path string, info os.FileInfo, err error) error {
 		if strings.HasPrefix(filepath.Base(path), ".") || filepath.Ext(path) != ".thrift" {
-			return nil
-		}
-
-		if !strings.HasSuffix(path, "ShipForMe.thrift") {
 			return nil
 		}
 
