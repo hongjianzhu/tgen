@@ -26,11 +26,16 @@ public enum TShipType implements java.io.Serializable {
 	AA(1),
 =======
 public enum TShipType implements java.io.Serializable, DeserializerEnum {
+<<<<<<< 6f956925af43b7e9954fc7f1b1a77ba16cae80e4
 >>>>>>> modify Java template
 	@SerializedName("2")
 	BB(2),
+=======
+>>>>>>> modify Java template
 	@SerializedName("1")
-	AA(1);
+	AA(1),
+	@SerializedName("2")
+	BB(2);
 
 <<<<<<< 392a8a2f3c6c24710bc28cc677435ecb721b9830
 >>>>>>> modify generated source files

@@ -127,9 +127,9 @@ func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 
 	switch t.Name {
 	case langs.ThriftTypeList, langs.ThriftTypeSet:
-		return fmt.Sprintf("ArrayList<%s>", b.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("java.util.ArrayList<%s>", b.ObjectTypecast(t.ValueType))
 	case langs.ThriftTypeMap:
-		return fmt.Sprintf("Map<%s, %s>", b.ObjectTypecast(t.KeyType), b.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("java.util.Map<%s, %s>", b.ObjectTypecast(t.KeyType), b.ObjectTypecast(t.ValueType))
 	default:
 		s := strings.Split(t.Name, ".")
 		if len(s) == 1 {

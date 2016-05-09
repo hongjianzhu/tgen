@@ -15,7 +15,6 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
 
 {{ $js := . -}}
 public class {{ .Service.Name}}Service {
