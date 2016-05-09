@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
-public enum TShipType implements java.io.Serializable {
+public enum TShipType implements java.io.Serializable, DeserializerEnum {
 	@SerializedName("1")
 	AA(1),
 	@SerializedName("2")
@@ -23,5 +23,10 @@ public enum TShipType implements java.io.Serializable {
 	@Override
     public String toString() {
         return Integer.toString(type);
+    }
+
+    @Override
+    public int getValue() {
+        return type;
     }
 }
