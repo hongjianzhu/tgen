@@ -34,6 +34,8 @@ func TestGenerate(t *testing.T) {
 			return nil
 		}
 
+		global.InputFile = path
+
 		parsedThrift, _, err := p.ParseFile(path)
 		if err != nil {
 			t.Errorf("parse error: %s\n", err.Error())
@@ -41,7 +43,11 @@ func TestGenerate(t *testing.T) {
 
 		gen.Generate(outdir, parsedThrift)
 
-		for _, thrift := range parsedThrift {
+		for f, thrift := range parsedThrift {
+			if f != global.InputFile {
+				continue
+			}
+
 			ns := thrift.Namespaces["java"]
 			p := strings.Replace(ns, ".", "/", -1)
 
