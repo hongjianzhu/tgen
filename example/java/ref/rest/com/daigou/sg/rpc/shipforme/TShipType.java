@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public enum TShipType implements java.io.Serializable, DeserializerEnum {
-	@SerializedName("2")
-	BB(2),
 	@SerializedName("1")
-	AA(1);
+	AA(1),
+	@SerializedName("2")
+	BB(2);
 
 
 	int type;
