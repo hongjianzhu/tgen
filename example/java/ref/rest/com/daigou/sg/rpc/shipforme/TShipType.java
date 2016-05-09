@@ -39,6 +39,7 @@ public enum TShipType implements java.io.Serializable {
 
 	@Override
     public String toString() {
+<<<<<<< 82c4937cdf3db5620bead817a0f1a331f40dc0bb
 <<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
         return Integer.toString(type);
     }
@@ -49,5 +50,8 @@ public enum TShipType implements java.io.Serializable {
 =======
         return String.valueOf(type);
 >>>>>>> modify generated source files
+=======
+        return Integer.toString(type);
+>>>>>>> delete useless java files
     }
 }
