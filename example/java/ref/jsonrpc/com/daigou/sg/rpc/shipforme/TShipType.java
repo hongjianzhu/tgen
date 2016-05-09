@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Don't change manually
  */
 
+<<<<<<< afb280a09fe982f0d69aceb69556e08afa42e493
 <<<<<<< 6f956925af43b7e9954fc7f1b1a77ba16cae80e4
 <<<<<<< 027989a52c3b7df0ed48e9a7895e42164e51bec0
 <<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
@@ -32,6 +33,9 @@ public enum TShipType implements java.io.Serializable {
 =======
 public enum TShipType implements java.io.Serializable, DeserializerEnum {
 >>>>>>> modify Java template
+=======
+public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.DeserializerEnum {
+>>>>>>> add package name
 	@SerializedName("1")
 	AA(1),
 	@SerializedName("2")
