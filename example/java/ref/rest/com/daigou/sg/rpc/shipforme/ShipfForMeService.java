@@ -15,6 +15,7 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
 <<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1
 =======
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Map;
 >>>>>>> modify java template: add import
 =======
+=======
+>>>>>>> modify Java template
 import java.util.HashMap;
 >>>>>>> change generated source files
 
@@ -64,7 +67,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("originCode", originCode);
 
@@ -101,7 +108,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("warehouseCode", warehouseCode);
                 
@@ -140,7 +151,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("confirm", confirm);
                 
@@ -169,7 +184,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderId", orderId);
 
@@ -206,7 +225,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("originCode", originCode);
 
@@ -250,8 +273,14 @@ public class ShipfForMeService {
                 msg.put("shipType", shipTypeValue);
 =======
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 msg.put("shipType", shipType);
 >>>>>>> modify generated source files
+=======
+                
+                int shipTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) shipType).getValue();
+                msg.put("shipType", shipTypeValue);
+>>>>>>> modify Java template
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
@@ -286,7 +315,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderId", orderId);
 
@@ -323,7 +356,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderIds", orderIds);
                 
@@ -374,7 +411,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("originCode", originCode);
                 
@@ -426,8 +467,14 @@ public class ShipfForMeService {
                 msg.put("paymentType", paymentTypeValue);
 =======
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 msg.put("paymentType", paymentType);
 >>>>>>> modify generated source files
+=======
+                
+                int paymentTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) paymentType).getValue();
+                msg.put("paymentType", paymentTypeValue);
+>>>>>>> modify Java template
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
@@ -462,7 +509,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderIds", orderIds);
                 
@@ -503,7 +554,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderIds", orderIds);
                 
@@ -542,7 +597,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("phoneNumber", phoneNumber);
 
@@ -569,7 +628,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("orderId", orderId);
                 
@@ -618,7 +681,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
+<<<<<<< ae032663e235daac3be6b0084cc2ee34eb37aea3
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
+=======
+                HashMap<String, Object> msg = new HashMap<String, Object>();
+>>>>>>> modify Java template
                 
                 msg.put("phoneNumber", phoneNumber);
                 
