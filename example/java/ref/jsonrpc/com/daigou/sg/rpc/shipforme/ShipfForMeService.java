@@ -15,10 +15,7 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
 public class ShipfForMeService {
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
@@ -32,21 +29,21 @@ public class ShipfForMeService {
         return Integer.toString(msgID);
     }
 
-    public static RpcRequest GetCourierCompaniesByRegion(final String originCode, final Listener<ArrayList<String>> listener) {
+    public static RpcRequest GetCourierCompaniesByRegion(final String originCode, final Listener<java.util.ArrayList<String>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        ArrayList<String> result;
+                        java.util.ArrayList<String> result;
                         result = BaseModule.fromJSONArray(response, String.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -58,10 +55,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(originCode);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.GetCourierCompaniesByRegion");
                 msg.put("params", params);
@@ -84,10 +81,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -99,7 +96,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(warehouseCode);
                 params.add(shipperName);
                 params.add(wayBill);
@@ -108,7 +105,7 @@ public class ShipfForMeService {
                 params.add(originCode);
                 params.add(repack);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserAddNewShipForMeOrder");
                 msg.put("params", params);
@@ -136,11 +133,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(confirm);
                 params.add(orderId);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserConfirmShipForMeRepack");
                 msg.put("params", params);
@@ -168,10 +165,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderId);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserDeleteShipForMeOrder");
                 msg.put("params", params);
@@ -183,21 +180,21 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeAddressByRegion(final String originCode, final Listener<ArrayList<TShipformeAddress>> listener) {
+    public static RpcRequest UserGetShipForMeAddressByRegion(final String originCode, final Listener<java.util.ArrayList<TShipformeAddress>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        ArrayList<TShipformeAddress> result;
+                        java.util.ArrayList<TShipformeAddress> result;
                         result = BaseModule.fromJSONArray(response, TShipformeAddress.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -209,10 +206,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(originCode);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeAddressByRegion");
                 msg.put("params", params);
@@ -235,10 +232,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -250,10 +247,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(shipType);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeHomeSummary");
                 msg.put("params", params);
@@ -276,10 +273,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -291,10 +288,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderId);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderDetailByOrderId");
                 msg.put("params", params);
@@ -306,7 +303,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeOrderFeeByOrderIds(final ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<TShipformeOrderBill> listener) {
+    public static RpcRequest UserGetShipForMeOrderFeeByOrderIds(final java.util.ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<TShipformeOrderBill> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -317,10 +314,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -332,7 +329,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderIds);
                 params.add(insured);
                 params.add(deliveryMethod);
@@ -342,7 +339,7 @@ public class ShipfForMeService {
                 params.add(warehouseCode);
                 params.add(couponCode);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderFeeByOrderIds");
                 msg.put("params", params);
@@ -354,21 +351,21 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserGetShipForMeOrderListByStatus(final String originCode, final String warehouseCode, final String status, final int offset, final int limit, final Listener<ArrayList<TShipForMeOrder>> listener) {
+    public static RpcRequest UserGetShipForMeOrderListByStatus(final String originCode, final String warehouseCode, final String status, final int offset, final int limit, final Listener<java.util.ArrayList<TShipForMeOrder>> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        ArrayList<TShipForMeOrder> result;
+                        java.util.ArrayList<TShipForMeOrder> result;
                         result = BaseModule.fromJSONArray(response, TShipForMeOrder.class);
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -380,14 +377,14 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(originCode);
                 params.add(warehouseCode);
                 params.add(status);
                 params.add(offset);
                 params.add(limit);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeOrderListByStatus");
                 msg.put("params", params);
@@ -410,10 +407,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -425,10 +422,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(paymentType);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserGetShipForMeSummary");
                 msg.put("params", params);
@@ -440,7 +437,7 @@ public class ShipfForMeService {
         return req;
     }
 
-    public static RpcRequest UserPackShipForMeOrder(final ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<Integer> listener) {
+    public static RpcRequest UserPackShipForMeOrder(final java.util.ArrayList<String> orderIds, final boolean insured, final String deliveryMethod, final String shipmentTypeCode, final int customerAddressId, final String originCode, final String warehouseCode, final String couponCode, final Listener<Integer> listener) {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
@@ -451,10 +448,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -466,7 +463,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderIds);
                 params.add(insured);
                 params.add(deliveryMethod);
@@ -476,7 +473,7 @@ public class ShipfForMeService {
                 params.add(warehouseCode);
                 params.add(couponCode);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserPackShipForMeOrder");
                 msg.put("params", params);
@@ -504,11 +501,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderIds);
                 params.add(price);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserSaveShipForMeOrderPrice");
                 msg.put("params", params);
@@ -531,10 +528,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -546,10 +543,10 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(phoneNumber);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserSendToTelephone");
                 msg.put("params", params);
@@ -577,7 +574,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(orderId);
                 params.add(warehouseCode);
                 params.add(shipperName);
@@ -586,7 +583,7 @@ public class ShipfForMeService {
                 params.add(takePhoto);
                 params.add(repack);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserUpdateShipForMeOrder");
                 msg.put("params", params);
@@ -609,10 +606,10 @@ public class ShipfForMeService {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                 }
@@ -624,11 +621,11 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
                 params.add(phoneNumber);
                 params.add(validationCode);
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "ShipfForMe.UserValidationPhone");
                 msg.put("params", params);
