@@ -27,12 +27,12 @@ public class TShipForMeOrder extends BaseModule<TShipForMeOrder> implements Seri
     public boolean hasRepackService;
     public boolean hasOtherService;
     public boolean isProcessing;
-    public ArrayList<TVendorName> vendorNames;
+    public java.util.ArrayList<TVendorName> vendorNames;
     public String correctVendorName;
     public double valueAddedCharge;
     public String orderStatus;
     public String attachments;
     public String valueAddedService;
     public String repackService;
-    public ArrayList<TOrderRemark> remarks;
+    public java.util.ArrayList<TOrderRemark> remarks;
 }

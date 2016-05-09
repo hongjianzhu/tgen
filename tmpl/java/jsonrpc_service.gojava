@@ -15,10 +15,7 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
 {{ $js := . -}}
 
 public class {{ .Service.Name}}Service {
@@ -65,10 +62,10 @@ public class {{ .Service.Name}}Service {
 
                         listener.onResponse(result);
                     } catch (Exception ex) {
-                         
+
                         // Log.d("ex", ex.toString());
                         // Log.d("jsonObject", response);
-                         
+
                         listener.onResponse(null);
                     }
                     {{- else -}}
@@ -85,12 +82,12 @@ public class {{ .Service.Name}}Service {
         }) {
             @Override
             public byte[] getBody() {
-                final ArrayList<Object> params = new ArrayList<>();
+                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
 {{- range $arg := $method.Arguments }}
                 params.add({{ $js.FilterVariableName $arg.Name }});
 {{- end }}
 
-                HashMap<String, Object> msg = new HashMap<>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
                 msg.put("id", getMsgID());
                 msg.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
                 msg.put("params", params);

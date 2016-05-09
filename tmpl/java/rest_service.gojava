@@ -15,7 +15,6 @@ import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
 
 {{ $js := . -}}
 public class {{ .Service.Name}}Service {
@@ -83,7 +82,7 @@ public class {{ .Service.Name}}Service {
             @Override
             public byte[] getBody() {
                 {{- if $method.Arguments }}
-                HashMap<String, Object> msg = new HashMap<String, Object>();
+                java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
                 {{- range $arg := $method.Arguments }}
                 {{$fieldname := $js.FilterVariableName $arg.Name}}
                 {{- if $js.BaseJava.IsEnum $arg.Type}}
