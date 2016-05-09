@@ -138,7 +138,7 @@ func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 			pkg := ""
 			for k, v := range b.t.Includes {
 				if k == s[0] {
-					for p, t := range *b.ts {
+					for p, t := range b.ts {
 						if v == p {
 							pkg = t.Namespaces[javaLang]
 							break
@@ -192,6 +192,45 @@ func (b *BaseJava) GetInnerType(t *parser.Type) string {
 	}
 
 	return b.ObjectTypecast(t)
+}
+
+// IsEnum checks whether a type is enum.
+// it first checks in its own definition, than check from included files
+func (b *BaseJava) IsEnum(t *parser.Type) bool {
+	if t == nil {
+		return false
+	}
+
+	names := strings.Split(t.Name, ".")
+
+	if len(names) == 1 {
+		for n := range b.t.Enums {
+			if n == t.Name {
+				return true
+			}
+		}
+
+		return false
+	}
+
+	for path, thrift := range b.ts {
+		if thrift == b.t {
+			continue
+		}
+
+		filename := strings.TrimSuffix(filepath.Base(path), filepath.Ext(path))
+		if filename != names[0] {
+			continue
+		}
+
+		for n := range thrift.Enums {
+			if n == names[1] {
+				return true
+			}
+		}
+	}
+
+	return false
 }
 
 type javaEnum struct {
@@ -295,7 +334,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 
 				path := filepath.Join(p, name)
 
-				base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
+				base := BaseJava{Namespace: ns, t: t, ts: parsedThrift}
 				data := &javaEnum{BaseJava: &base, Enum: e}
 
 				if err := outputfile(path, enumTpl, TPL_ENUM, data); err != nil {

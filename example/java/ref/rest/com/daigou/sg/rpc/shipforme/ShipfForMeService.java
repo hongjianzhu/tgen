@@ -14,10 +14,7 @@ import com.daigou.sg.rpc.RpcRequest;
 import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ShipfForMeService {
@@ -60,6 +57,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("originCode", originCode);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -96,12 +94,19 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("warehouseCode", warehouseCode);
+                
                 msg.put("shipperName", shipperName);
+                
                 msg.put("wayBill", wayBill);
+                
                 msg.put("alternative", alternative);
+                
                 msg.put("takePhoto", takePhoto);
+                
                 msg.put("originCode", originCode);
+                
                 msg.put("repack", repack);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -128,7 +133,9 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("confirm", confirm);
+                
                 msg.put("orderId", orderId);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -155,6 +162,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderId", orderId);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -191,6 +199,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("originCode", originCode);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -227,7 +236,9 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
-                msg.put("shipType", shipType);
+                
+                int shipTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) shipType).getValue();
+                msg.put("shipType", shipTypeValue);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
@@ -263,6 +274,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderId", orderId);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -299,13 +311,21 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderIds", orderIds);
+                
                 msg.put("insured", insured);
+                
                 msg.put("deliveryMethod", deliveryMethod);
+                
                 msg.put("shipmentTypeCode", shipmentTypeCode);
+                
                 msg.put("customerAddressId", customerAddressId);
+                
                 msg.put("originCode", originCode);
+                
                 msg.put("warehouseCode", warehouseCode);
+                
                 msg.put("couponCode", couponCode);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -342,10 +362,15 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("originCode", originCode);
+                
                 msg.put("warehouseCode", warehouseCode);
+                
                 msg.put("status", status);
+                
                 msg.put("offset", offset);
+                
                 msg.put("limit", limit);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -382,7 +407,9 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
-                msg.put("paymentType", paymentType);
+                
+                int paymentTypeValue = ((com.daigou.sg.rpc.DeserializerEnum) paymentType).getValue();
+                msg.put("paymentType", paymentTypeValue);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
             }
@@ -418,13 +445,21 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderIds", orderIds);
+                
                 msg.put("insured", insured);
+                
                 msg.put("deliveryMethod", deliveryMethod);
+                
                 msg.put("shipmentTypeCode", shipmentTypeCode);
+                
                 msg.put("customerAddressId", customerAddressId);
+                
                 msg.put("originCode", originCode);
+                
                 msg.put("warehouseCode", warehouseCode);
+                
                 msg.put("couponCode", couponCode);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -451,7 +486,9 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderIds", orderIds);
+                
                 msg.put("price", price);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -488,6 +525,7 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("phoneNumber", phoneNumber);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -514,12 +552,19 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("orderId", orderId);
+                
                 msg.put("warehouseCode", warehouseCode);
+                
                 msg.put("shipperName", shipperName);
+                
                 msg.put("wayBill", wayBill);
+                
                 msg.put("alternative", alternative);
+                
                 msg.put("takePhoto", takePhoto);
+                
                 msg.put("repack", repack);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
@@ -556,7 +601,9 @@ public class ShipfForMeService {
             @Override
             public byte[] getBody() {
                 HashMap<String, Object> msg = new HashMap<String, Object>();
+                
                 msg.put("phoneNumber", phoneNumber);
+                
                 msg.put("validationCode", validationCode);
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
