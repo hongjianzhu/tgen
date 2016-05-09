@@ -20,11 +20,16 @@ public enum TShipType implements java.io.Serializable, com.daigou.sg.rpc.Deseria
 public enum TShipType {
 =======
 public enum TShipType implements java.io.Serializable {
+<<<<<<< 82c4937cdf3db5620bead817a0f1a331f40dc0bb
 >>>>>>> modify enum
 	@SerializedName("1")
 	AA(1),
+=======
+>>>>>>> delete useless java files
 	@SerializedName("2")
-	BB(2);
+	BB(2),
+	@SerializedName("1")
+	AA(1);
 
 <<<<<<< 392a8a2f3c6c24710bc28cc677435ecb721b9830
 >>>>>>> modify generated source files
@@ -39,6 +44,7 @@ public enum TShipType implements java.io.Serializable {
 
 	@Override
     public String toString() {
+<<<<<<< 82c4937cdf3db5620bead817a0f1a331f40dc0bb
 <<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
         return Integer.toString(type);
     }
@@ -49,5 +55,8 @@ public enum TShipType implements java.io.Serializable {
 =======
         return String.valueOf(type);
 >>>>>>> modify generated source files
+=======
+        return Integer.toString(type);
+>>>>>>> delete useless java files
     }
 }
