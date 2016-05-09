@@ -127,9 +127,9 @@ func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 
 	switch t.Name {
 	case langs.ThriftTypeList, langs.ThriftTypeSet:
-		return fmt.Sprintf("ArrayList<%s>", b.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("java.util.ArrayList<%s>", b.ObjectTypecast(t.ValueType))
 	case langs.ThriftTypeMap:
-		return fmt.Sprintf("Map<%s, %s>", b.ObjectTypecast(t.KeyType), b.ObjectTypecast(t.ValueType))
+		return fmt.Sprintf("java.util.Map<%s, %s>", b.ObjectTypecast(t.KeyType), b.ObjectTypecast(t.ValueType))
 	default:
 		s := strings.Split(t.Name, ".")
 		if len(s) == 1 {
@@ -138,7 +138,7 @@ func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 			pkg := ""
 			for k, v := range b.t.Includes {
 				if k == s[0] {
-					for p, t := range *b.ts {
+					for p, t := range b.ts {
 						if v == p {
 							pkg = t.Namespaces[javaLang]
 							break
@@ -189,7 +189,6 @@ func (b *BaseJava) GetInnerType(t *parser.Type) string {
 	// map is ignored
 	if t.Name == langs.ThriftTypeList || t.Name == langs.ThriftTypeSet {
 		return b.GetInnerType(t.ValueType)
-<<<<<<< fc3f70c15691348aa51baf9042726ad29ce4fea5
 	}
 
 	return b.ObjectTypecast(t)
@@ -232,34 +231,6 @@ func (b *BaseJava) IsEnum(t *parser.Type) bool {
 	}
 
 	return false
-}
-
-type javaEnum struct {
-	*BaseJava
-	*parser.Enum
-}
-
-func (e *javaEnum) GenerateProperties() string {
-	size := len(e.Enum.Values)
-	i := 0
-
-	var buf bytes.Buffer
-	for _, v := range e.Enum.Values {
-		buf.WriteString(fmt.Sprintf("\t@SerializedName(\"%d\")\n", v.Value))
-		buf.WriteString(fmt.Sprintf("\t%s(%d)", strings.ToUpper(v.Name), v.Value))
-		if i == size-1 {
-			buf.WriteString(";\n")
-		} else {
-			buf.WriteString(",\n")
-		}
-		i++
-	}
-	return buf.String()
-=======
-	}
-
-	return b.ObjectTypecast(t)
->>>>>>> change generated source files
 }
 
 type javaEnum struct {
@@ -363,7 +334,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 
 				path := filepath.Join(p, name)
 
-				base := BaseJava{Namespace: ns, t: t, ts: &parsedThrift}
+				base := BaseJava{Namespace: ns, t: t, ts: parsedThrift}
 				data := &javaEnum{BaseJava: &base, Enum: e}
 
 				if err := outputfile(path, enumTpl, TPL_ENUM, data); err != nil {
