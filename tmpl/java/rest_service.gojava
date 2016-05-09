@@ -14,10 +14,7 @@ import com.daigou.sg.rpc.RpcRequest;
 import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 {{ $js := . -}}
@@ -88,7 +85,13 @@ public class {{ .Service.Name}}Service {
                 {{- if $method.Arguments }}
                 HashMap<String, Object> msg = new HashMap<String, Object>();
                 {{- range $arg := $method.Arguments }}
-                msg.put("{{ $js.FilterVariableName $arg.Name }}", {{ $js.FilterVariableName $arg.Name }});
+                {{$fieldname := $js.FilterVariableName $arg.Name}}
+                {{- if $js.BaseJava.IsEnum $arg.Type}}
+                int {{$fieldname}}Value = ((com.daigou.sg.rpc.DeserializerEnum) {{$fieldname}}).getValue();
+                msg.put("{{ $fieldname }}", {{ $fieldname }}Value);
+                {{- else}}
+                msg.put("{{ $fieldname }}", {{ $fieldname }});
+                {{- end}}
                 {{- end }}
 
                 return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));

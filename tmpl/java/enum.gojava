@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 {{ $data := . -}}
 
-public enum {{.Enum.Name}} implements java.io.Serializable {
+public enum {{.Enum.Name}} implements java.io.Serializable, DeserializerEnum {
 {{.GenerateProperties}}
 
 	int type;
@@ -21,5 +21,10 @@ public enum {{.Enum.Name}} implements java.io.Serializable {
 	@Override
     public String toString() {
         return Integer.toString(type);
+    }
+
+    @Override
+    public int getValue() {
+        return type;
     }
 }
