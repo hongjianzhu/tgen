@@ -346,13 +346,13 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 		// due to java's features,
 		// we generate the struct and service in seperate template file
 
-		ns := t.Namespaces["java"]
+		ns := t.Namespaces[javaLang]
 
 		if len(t.Enums) > 0 {
 			log.Printf("## enums")
 
 			for _, e := range t.Enums {
-				name := e.Name + ".java"
+				name := e.Name + javaExt
 
 				// fix java file path
 				p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
