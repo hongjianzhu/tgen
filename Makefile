@@ -7,8 +7,7 @@ init:
 	go get -v github.com/spf13/cobra/cobra
 	go get -u github.com/jteeuwen/go-bindata/...
 
-test:
-	make buildTpl
+test: buildTpl
 	go test ./...
 
 buildTpl:
