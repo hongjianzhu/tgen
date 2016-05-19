@@ -36,7 +36,6 @@ var genCmd = &cobra.Command{
 	Use:   "gen",
 	Short: "Generate api source code",
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
 		if lang == "" {
 			fmt.Println("-l language must be specified")
 			return
