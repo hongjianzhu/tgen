@@ -3,3 +3,4 @@ tgen
 .DS_Store
 *.sublime-project
 *.sublime-workspace
+.vscode/
