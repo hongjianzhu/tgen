@@ -16,6 +16,11 @@ import (
 )
 
 const (
+	javaLang = "java"
+	javaExt  = ".java"
+)
+
+const (
 	JavaTypeshort  = "short"
 	JavaTypeint    = "int"
 	JavaTypelong   = "long"
@@ -136,7 +141,7 @@ func (b *BaseJava) typecast(t *parser.Type, isplain bool) string {
 
 					for p, t := range b.ts {
 						if v == p {
-							pkg = t.Namespaces["java"]
+							pkg = t.Namespaces[javaLang]
 							break
 						}
 					}
@@ -289,7 +294,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 		log.Fatalf("mode '%s' is invalid", m)
 	}
 
-	gen.BaseGen.Init("java", parsedThrift)
+	gen.BaseGen.Init(javaLang, parsedThrift)
 
 	if err := os.MkdirAll(output, 0755); err != nil {
 		panic(fmt.Errorf("failed to create output directory %s", output))
@@ -345,7 +350,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 
 		for _, s := range t.Structs {
 			// filename is the struct name
-			name := s.Name + ".java"
+			name := s.Name + javaExt
 
 			// fix java file path
 			p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
@@ -369,7 +374,7 @@ func generateWithModel(gen *JavaGen, m string, output string, parsedThrift map[s
 
 		for _, s := range t.Services {
 			// filename is the service name plus 'Service'
-			name := s.Name + "Service.java"
+			name := s.Name + "Service" + javaExt
 
 			// fix java file path
 			p := filepath.Join(output, strings.Replace(ns, ".", "/", -1))
@@ -425,5 +430,5 @@ func outputfile(fp string, t *template.Template, tplname string, data interface{
 }
 
 func init() {
-	langs.Langs["java"] = &JavaGen{}
+	langs.Langs[javaLang] = &JavaGen{}
 }
