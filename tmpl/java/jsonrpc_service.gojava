@@ -9,9 +9,9 @@ import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.daigou.sg.rpc.BaseModule;
-import com.daigou.sg.rpc.TRpcErrorListener;
 import com.daigou.sg.rpc.GsonUtils;
 import com.daigou.sg.rpc.RpcRequest;
+import com.daigou.sg.rpc.RpcResponse
 import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
@@ -33,49 +33,28 @@ public class {{ .Service.Name}}Service {
     }
 {{ range $k, $method := $.Service.Methods }}
     public static RpcRequest {{ $method.Name }}({{ $method | $js.BaseJava.AssembleParams }}) {
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    {{- if $method.ReturnType }}
-                    try {
-                        {{ $method.ReturnType | $js.BaseJava.ObjectTypecast }} result;
-
-                        {{- if eq $method.ReturnType.Name "string" }}
-                        result = BaseModule.fromJSON(response, String.class);
-                        {{- else if eq $method.ReturnType.Name "bool" }}
-                        result = BaseModule.fromJSON(response, Boolean.class);
-                        {{- else if eq $method.ReturnType.Name "i16" }}
-                        result = BaseModule.fromJSON(response, Short.class);
-                        {{- else if eq $method.ReturnType.Name "i32" }}
-                        result = BaseModule.fromJSON(response, Integer.class);
-                        {{- else if eq $method.ReturnType.Name "i64" }}
-                        result = BaseModule.fromJSON(response, Long.class);
-                        {{- else if eq $method.ReturnType.Name "double" }}
-                        result = BaseModule.fromJSON(response, Double.class);
-                        {{- else if or (eq $method.ReturnType.Name "set") (eq $method.ReturnType.Name "list") }}
-                        result = BaseModule.fromJSONArray(response, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class);
-                        {{- else if eq $method.ReturnType.Name "map" }}
-                        <!-- map is ignored -->
-                        {{- else }}
-                        result = BaseModule.fromJSON(response, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class);
-                        {{- end }}
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
-                        listener.onResponse(null);
-                    }
-                    {{- else -}}
-                    if (listener != null) {
-                        listener.onResponse(null);
-                    }
-                    {{- end }}
-                }
-            }, new TRpcErrorListener(listener)) {
+        {{- if $method.ReturnType }}
+        {{- if eq $method.ReturnType.Name "string" }}
+        RpcResponse res = new RpcResponse(String.class, listener);
+        {{- else if eq $method.ReturnType.Name "bool" }}
+        RpcResponse res = new RpcResponse(String.class, listener);
+        {{- else if eq $method.ReturnType.Name "i16" }}
+        RpcResponse res = new RpcResponse(Short.class, listener);
+        {{- else if eq $method.ReturnType.Name "i32" }}
+        RpcResponse res = new RpcResponse(Integer.class, listener);
+        {{- else if eq $method.ReturnType.Name "i64" }}
+        RpcResponse res = new RpcResponse(Long.class, listener);
+        {{- else if eq $method.ReturnType.Name "double" }}
+        RpcResponse res = new RpcResponse(Double.class, listener);
+        {{- else if or (eq $method.ReturnType.Name "set") (eq $method.ReturnType.Name "list") }}
+        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener, true);
+        {{- else if eq $method.ReturnType.Name "map" }}
+        <!-- map is ignored -->
+        {{- else }}
+        RpcResponse res = new RpcResponse(null, listener);
+        {{- end }
+        {{- end }
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(), res, res) {
             @Override
             public byte[] getBody() {
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
