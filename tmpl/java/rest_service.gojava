@@ -8,7 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.daigou.sg.rpc.BaseModule
+import com.daigou.sg.rpc.BaseModule;
 import com.daigou.sg.rpc.TRpcErrorListener;
 import com.daigou.sg.rpc.GsonUtils;
 import com.daigou.sg.rpc.RpcRequest;
