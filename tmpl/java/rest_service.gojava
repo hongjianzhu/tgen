@@ -71,7 +71,7 @@ public class {{ .Service.Name}}Service {
         java.util.HashMap<String, Object> args = null;
         {{- end }}
 
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args)
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args);
         TRpc.getQueue().add(req);
         return req;
     }
