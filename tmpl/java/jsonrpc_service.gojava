@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.daigou.sg.rpc.BaseModule;
+import com.daigou.sg.rpc.TRpcErrorListener;
 import com.daigou.sg.rpc.GsonUtils;
 import com.daigou.sg.rpc.RpcRequest;
 import com.daigou.sg.rpc.TRpc;
@@ -74,12 +75,7 @@ public class {{ .Service.Name}}Service {
                     }
                     {{- end }}
                 }
-            }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onResponse(null);
-            }
-        }) {
+            }, new TRpcErrorListener(listener)) {
             @Override
             public byte[] getBody() {
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
