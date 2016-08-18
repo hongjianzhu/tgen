@@ -11,7 +11,7 @@ import com.android.volley.VolleyError;
 import com.daigou.sg.rpc.BaseModule;
 import com.daigou.sg.rpc.GsonUtils;
 import com.daigou.sg.rpc.RpcRequest;
-import com.daigou.sg.rpc.RpcResponse
+import com.daigou.sg.rpc.RpcResponse;
 import com.daigou.sg.rpc.TRpc;
 import com.google.gson.Gson;
 
