@@ -52,9 +52,9 @@ public class {{ .Service.Name}}Service {
         <!-- map is ignored -->
         {{- else }}
         RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener);
+        {{- end }
         {{- else }}
         RpcResponse res = new RpcResponse(null, listener);
-        {{- end }
         {{- end }
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(), res, res) {
             @Override
