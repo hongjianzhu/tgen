@@ -56,27 +56,22 @@ public class {{ .Service.Name}}Service {
         RpcResponse res = new RpcResponse(null, listener);
         {{- end }}
 
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, res) {
-            @Override
-            public byte[] getBody() {
-                {{- if $method.Arguments }}
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
-                {{- range $arg := $method.Arguments }}
-                {{$fieldname := $js.FilterVariableName $arg.Name}}
-                {{- if $js.BaseJava.IsEnum $arg.Type}}
-                int {{$fieldname}}Value = ((com.daigou.sg.rpc.DeserializerEnum) {{$fieldname}}).getValue();
-                msg.put("{{ $fieldname }}", {{ $fieldname }}Value);
-                {{- else}}
-                msg.put("{{ $fieldname }}", {{ $fieldname }});
-                {{- end}}
-                {{- end }}
+        {{- if $method.Arguments }}
+        java.util.HashMap<String, Object> args = new java.util.HashMap<String, Object>();
+        {{- range $arg := $method.Arguments }}
+        {{$fieldname := $js.FilterVariableName $arg.Name}}
+        {{- if $js.BaseJava.IsEnum $arg.Type}}
+        int {{$fieldname}}Value = ((com.daigou.sg.rpc.DeserializerEnum) {{$fieldname}}).getValue();
+        args.put("{{ $fieldname }}", {{ $fieldname }}Value);
+        {{- else}}
+        args.put("{{ $fieldname }}", {{ $fieldname }});
+        {{- end}}
+        {{- end }}
+        {{- else }}
+        java.util.HashMap<String, Object> args = null;
+        {{- end }}
 
-                return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
-                {{- else }}
-                return "".getBytes(Charset.forName("UTF-8"));
-                {{- end }}
-            }
-        };
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args)
         TRpc.getQueue().add(req);
         return req;
     }
