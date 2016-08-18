@@ -56,22 +56,18 @@ public class {{ .Service.Name}}Service {
         {{- else }}
         RpcResponse res = new RpcResponse(null, listener);
         {{- end }}
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(), res, res) {
-            @Override
-            public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
-{{- range $arg := $method.Arguments }}
-                params.add({{ $js.FilterVariableName $arg.Name }});
-{{- end }}
 
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
-                msg.put("id", getMsgID());
-                msg.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
-                msg.put("params", params);
+        final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+        {{- range $arg := $method.Arguments }}
+        params.add({{ $js.FilterVariableName $arg.Name }});
+        {{- end }}
 
-                return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
-            }
-        };
+        java.util.HashMap<String, Object> args = new java.util.HashMap<>();
+        args.put("id", getMsgID());
+        args.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
+        args.put("params", params);
+
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(), res, args);
         TRpc.getQueue().add(req);
         return req;
     }
