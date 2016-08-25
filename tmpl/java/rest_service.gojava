@@ -34,26 +34,26 @@ public class {{ .Service.Name}}Service {
     public static RpcRequest {{ $method.Name }}({{ $method | $js.BaseJava.AssembleParams }}) {
         {{- if $method.ReturnType }}
         {{- if eq $method.ReturnType.Name "string" }}
-        RpcResponse res = new RpcResponse(String.class, listener);
+        RpcResponse res = new RpcResponse(String.class, listener,false,false);
         {{- else if eq $method.ReturnType.Name "bool" }}
-        RpcResponse res = new RpcResponse(String.class, listener);
+        RpcResponse res = new RpcResponse(Boolean.class, listener,false,false);
         {{- else if eq $method.ReturnType.Name "i16" }}
-        RpcResponse res = new RpcResponse(Short.class, listener);
+        RpcResponse res = new RpcResponse(Short.class, listener,false,false);
         {{- else if eq $method.ReturnType.Name "i32" }}
-        RpcResponse res = new RpcResponse(Integer.class, listener);
+        RpcResponse res = new RpcResponse(Integer.class, listener,false,false);
         {{- else if eq $method.ReturnType.Name "i64" }}
-        RpcResponse res = new RpcResponse(Long.class, listener);
+        RpcResponse res = new RpcResponse(Long.class, listener,false,false);
         {{- else if eq $method.ReturnType.Name "double" }}
-        RpcResponse res = new RpcResponse(Double.class, listener);
+        RpcResponse res = new RpcResponse(Double.class, listener,false,flase);
         {{- else if or (eq $method.ReturnType.Name "set") (eq $method.ReturnType.Name "list") }}
-        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener, true);
+        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener, true,false);
         {{- else if eq $method.ReturnType.Name "map" }}
         <!-- map is ignored -->
         {{- else }}
-        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener);
+        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener,false,false);
         {{- end }}
         {{- else }}
-        RpcResponse res = new RpcResponse(null, listener);
+        RpcResponse res = new RpcResponse(null, listener,false,false);
         {{- end }}
 
         {{- if $method.Arguments }}

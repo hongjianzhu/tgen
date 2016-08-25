@@ -37,7 +37,7 @@ public class {{ .Service.Name}}Service {
         {{- if eq $method.ReturnType.Name "string" }}
         RpcResponse res = new RpcResponse(String.class, listener);
         {{- else if eq $method.ReturnType.Name "bool" }}
-        RpcResponse res = new RpcResponse(String.class, listener);
+        RpcResponse res = new RpcResponse(Boolean.class, listener);
         {{- else if eq $method.ReturnType.Name "i16" }}
         RpcResponse res = new RpcResponse(Short.class, listener);
         {{- else if eq $method.ReturnType.Name "i32" }}
