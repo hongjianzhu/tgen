@@ -300,7 +300,7 @@ func tmplJavaJsonrpc_serviceGojava() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tmpl/java/jsonrpc_service.gojava", size: 2973, mode: os.FileMode(420), modTime: time.Unix(1472112350, 0)}
+	info := bindataFileInfo{name: "tmpl/java/jsonrpc_service.gojava", size: 2973, mode: os.FileMode(420), modTime: time.Unix(1472177116, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -340,7 +340,7 @@ func tmplJavaRest_serviceGojava() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tmpl/java/rest_service.gojava", size: 3310, mode: os.FileMode(420), modTime: time.Unix(1472112867, 0)}
+	info := bindataFileInfo{name: "tmpl/java/rest_service.gojava", size: 3310, mode: os.FileMode(420), modTime: time.Unix(1472177116, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

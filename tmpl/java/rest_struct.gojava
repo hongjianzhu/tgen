@@ -1,6 +1,6 @@
 package {{ .Namespace }};
 
-import com.daigou.sg.rpc.BaseModule;
+import com.daigou.model.BaseModule;
 {{- if .HasKeyword }}
 import com.google.gson.annotations.SerializedName;
 {{- end }}
