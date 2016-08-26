@@ -65,8 +65,8 @@ public class {{ .Service.Name}}Service {
         args.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
         args.put("params", params);
 
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(), res, args);
-        TRpc.getQueue().add(req);
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getJsonRpcUrl(), res, args);
+        TRpc.getInstance().getQueue().add(req);
         return req;
     }
 {{ end -}}
