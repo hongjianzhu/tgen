@@ -58,7 +58,7 @@ public class {{ .Service.Name}}Service {
         {{- range $arg := $method.Arguments }}
         {{$fieldname := $js.FilterVariableName $arg.Name}}
         {{- if $js.BaseJava.IsEnum $arg.Type}}
-        int {{$fieldname}}Value = ((com.daigou.sg.rpc.DeserializerEnum) {{$fieldname}}).getValue();
+        int {{$fieldname}}Value = ((com.daigou.model.DeserializerEnum) {{$fieldname}}).getValue();
         args.put("{{ $fieldname }}", {{ $fieldname }}Value);
         {{- else}}
         args.put("{{ $fieldname }}", {{ $fieldname }});
