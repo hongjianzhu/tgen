@@ -5,14 +5,11 @@ package {{ .BaseJava.Namespace }};
  * Don't change manually
  */
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-import com.daigou.sg.rpc.BaseModule;
-import com.daigou.sg.rpc.GsonUtils;
-import com.daigou.sg.rpc.RpcRequest;
-import com.daigou.sg.rpc.RpcResponse;
-import com.daigou.sg.rpc.TRpc;
+import com.daigou.model.GsonUtils;
+import com.daigou.model.RpcRequest;
+import com.daigou.model.RpcResponse;
+import com.daigou.model.TRpc;
 import com.google.gson.Gson;
 
 import java.nio.charset.Charset;
