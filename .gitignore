@@ -1,7 +1,4 @@
 tgen
-*/gen_*.go
+gen_*.go
 thriftgotest/*
-tmpl/bindata.go
 .DS_Store
-*.sublime-project
-*.sublime-workspace
