@@ -297,6 +297,15 @@ func (this *BaseSwift) Typecast(t *parser.Type, flag bool) string {
 	}
 }
 
+// LowerFirstLetter converts the first letter of a given string to lowercase
+func (b *BaseSwift) LowerFirstLetter(s string) string {
+	if s == "" {
+		return s
+	}
+
+	return strings.ToLower(string(s[0])) + s[1:]
+}
+
 type swiftEnum struct {
 	*BaseSwift
 	*parser.Enum

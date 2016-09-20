@@ -12,6 +12,30 @@ import (
 	"github.com/samuel/go-thrift/parser"
 )
 
+func TestLowerFirstLetter(t *testing.T) {
+	bs := &BaseSwift{}
+
+	s := "Hello"
+	if bs.LowerFirstLetter(s) != "hello" {
+		t.Error()
+	}
+
+	s = "hello"
+	if bs.LowerFirstLetter(s) != "hello" {
+		t.Error()
+	}
+
+	s = ""
+	if bs.LowerFirstLetter(s) != "" {
+		t.Error()
+	}
+
+	s = " "
+	if bs.LowerFirstLetter(s) != " " {
+		t.Error()
+	}
+}
+
 func TestGenerate(t *testing.T) {
 	// 1 read thrift files from folder 'cases'
 	// 2 generate & output
