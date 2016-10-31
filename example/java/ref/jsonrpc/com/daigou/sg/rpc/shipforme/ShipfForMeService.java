@@ -16,18 +16,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
-<<<<<<< 6f956925af43b7e9954fc7f1b1a77ba16cae80e4
-<<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
 public class ShipfForMeService {
-=======
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class PaymentService {
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
-=======
-public class ShipfForMeService {
->>>>>>> modify Java template
     private static final Gson gson = GsonUtils.getGsonInstance();
     private static int msgID = 1;
 
@@ -132,21 +121,7 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TCreditCardInfo result;
-                        result = BaseModule.doFromJSON(response, TCreditCardInfo.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -178,21 +153,7 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPaymentBillDetail result;
-                        result = BaseModule.doFromJSON(response, TPaymentBillDetail.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -286,15 +247,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-<<<<<<< 6f956925af43b7e9954fc7f1b1a77ba16cae80e4
-<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
-=======
-                final ArrayList<Object> params = new ArrayList<>();
->>>>>>> modify generated source files
-=======
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
->>>>>>> modify Java template
                 params.add(shipType);
 
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
@@ -469,15 +422,7 @@ public class ShipfForMeService {
         }) {
             @Override
             public byte[] getBody() {
-<<<<<<< 6f956925af43b7e9954fc7f1b1a77ba16cae80e4
-<<<<<<< 426d8c35cacb2945a2e01575b9ca889913f8c645
                 final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
-=======
-                final ArrayList<Object> params = new ArrayList<>();
->>>>>>> modify generated source files
-=======
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
->>>>>>> modify Java template
                 params.add(paymentType);
 
                 java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
@@ -544,21 +489,7 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPrimePaymentSummary result;
-                        result = BaseModule.doFromJSON(response, TPrimePaymentSummary.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }
@@ -631,21 +562,7 @@ public class ShipfForMeService {
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getJsonRpcUrl(),
             new Response.Listener<String>() {
                 @Override
-<<<<<<< 0536d024a95f5cb2a41bfd41472a5b9f94d7f4b1:example/java/ref/jsonrpc/com/daigou/sg/rpc/shipforme/ShipfForMeService.java
                 public void onResponse(String response) {if (listener != null) {
-=======
-                public void onResponse(String response) {
-                    try {
-                        TPrimePaymentResult result;
-                        result = BaseModule.doFromJSON(response, TPrimePaymentResult.class);
-
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
->>>>>>> modify java template: add import:example/java/ref/rest/com/daigou/sg/rpc/payment/PaymentService.java
                         listener.onResponse(null);
                     }
                 }

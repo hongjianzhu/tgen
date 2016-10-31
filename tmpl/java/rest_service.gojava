@@ -63,47 +63,8 @@ public class {{ .Service.Name}}Service {
         java.util.HashMap<String, Object> args = null;
         {{- end }}
 
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
-
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
-                        listener.onResponse(null);
-                    }
-                    {{- else -}}
-                    if (listener != null) {
-                        listener.onResponse(null);
-                    }
-                    {{- end }}
-                }
-            }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onResponse(null);
-            }
-        }) {
-            @Override
-            public byte[] getBody() {
-                {{- if $method.Arguments }}
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<String, Object>();
-                {{- range $arg := $method.Arguments }}
-                {{$fieldname := $js.FilterVariableName $arg.Name}}
-                {{- if $js.BaseJava.IsEnum $arg.Type}}
-                int {{$fieldname}}Value = ((com.daigou.sg.rpc.DeserializerEnum) {{$fieldname}}).getValue();
-                msg.put("{{ $fieldname }}", {{ $fieldname }}Value);
-                {{- else}}
-                msg.put("{{ $fieldname }}", {{ $fieldname }});
-                {{- end}}
-                {{- end }}
-
-                return gson.toJson(msg).getBytes(Charset.forName("UTF-8"));
-                {{- else }}
-                return "".getBytes(Charset.forName("UTF-8"));
-                {{- end }}
-            }
-        };
-        TRpc.getQueue().add(req);
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args);
+        TRpc.getInstance().getQueue().add(req);
         return req;
     }
 {{ end -}}

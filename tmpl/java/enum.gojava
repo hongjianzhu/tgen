@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 {{ $data := . -}}
 
-public enum {{.Enum.Name}} implements java.io.Serializable, com.daigou.sg.rpc.DeserializerEnum {
+public enum {{.Enum.Name}} implements java.io.Serializable, com.daigou.model.DeserializerEnum {
 {{.GenerateProperties}}
 
 	int type;

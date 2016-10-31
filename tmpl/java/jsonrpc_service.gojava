@@ -50,37 +50,15 @@ public class {{ .Service.Name}}Service {
         RpcResponse res = new RpcResponse(null, listener);
         {{- end }}
 
-                        listener.onResponse(result);
-                    } catch (Exception ex) {
+        final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
+        {{- range $arg := $method.Arguments }}
+        params.add({{ $js.FilterVariableName $arg.Name }});
+        {{- end }}
 
-                        // Log.d("ex", ex.toString());
-                        // Log.d("jsonObject", response);
-
-                        listener.onResponse(null);
-                    }
-                    {{- else -}}
-                    if (listener != null) {
-                        listener.onResponse(null);
-                    }
-                    {{- end }}
-                }
-            }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onResponse(null);
-            }
-        }) {
-            @Override
-            public byte[] getBody() {
-                final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
-{{- range $arg := $method.Arguments }}
-                params.add({{ $js.FilterVariableName $arg.Name }});
-{{- end }}
-
-                java.util.HashMap<String, Object> msg = new java.util.HashMap<>();
-                msg.put("id", getMsgID());
-                msg.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
-                msg.put("params", params);
+        java.util.HashMap<String, Object> args = new java.util.HashMap<>();
+        args.put("id", 1);
+        args.put("method", "{{ $js.Service.Name }}.{{ $method.Name }}");
+        args.put("params", params);
 
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getJsonRpcUrl(), res, args);
         TRpc.getInstance().getQueue().add(req);
