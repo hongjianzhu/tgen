@@ -42,10 +42,11 @@ public class {{ .Service.Name}}Service {
         {{- else if eq $method.ReturnType.Name "map" }}
         <!-- map is ignored -->
         {{- else }}
-        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener,false,false);
+        String addr = "{{ $js.Service.Name }}/{{ $method.Name }}";
+        RpcResponse res = new RpcResponse(addr, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener,false,false);
         {{- end }}
         {{- else }}
-        RpcResponse res = new RpcResponse(null, listener,false,false);
+        RpcResponse res = new RpcResponse(addr, null, listener,false,false);
         {{- end }}
 
         {{- if $method.Arguments }}
@@ -63,7 +64,7 @@ public class {{ .Service.Name}}Service {
         java.util.HashMap<String, Object> args = null;
         {{- end }}
 
-        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getWebApiUrl() + "{{ $js.Service.Name }}/{{ $method.Name }}", res, args);
+        RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getWebApiUrl() + addr, res, args);
         TRpc.getInstance().getQueue().add(req);
         return req;
     }
