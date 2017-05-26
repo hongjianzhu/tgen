@@ -26,29 +26,29 @@ public class {{ .Service.Name}}Service {
 
 {{ range $k, $method := $.Service.Methods }}
     public static RpcRequest {{ $method.Name }}({{ $method | $js.BaseJava.AssembleParams }}) {
+        String method = "{{ $js.Service.Name }}.{{ $method.Name }}";
         {{- if $method.ReturnType }}
         {{- if eq $method.ReturnType.Name "string" }}
-        RpcResponse res = new RpcResponse(String.class, listener);
+        RpcResponse res = new RpcResponse(method, String.class, listener);
         {{- else if eq $method.ReturnType.Name "bool" }}
-        RpcResponse res = new RpcResponse(Boolean.class, listener);
+        RpcResponse res = new RpcResponse(method, Boolean.class, listener);
         {{- else if eq $method.ReturnType.Name "i16" }}
-        RpcResponse res = new RpcResponse(Short.class, listener);
+        RpcResponse res = new RpcResponse(method, Short.class, listener);
         {{- else if eq $method.ReturnType.Name "i32" }}
-        RpcResponse res = new RpcResponse(Integer.class, listener);
+        RpcResponse res = new RpcResponse(method, Integer.class, listener);
         {{- else if eq $method.ReturnType.Name "i64" }}
-        RpcResponse res = new RpcResponse(Long.class, listener);
+        RpcResponse res = new RpcResponse(method, Long.class, listener);
         {{- else if eq $method.ReturnType.Name "double" }}
-        RpcResponse res = new RpcResponse(Double.class, listener);
+        RpcResponse res = new RpcResponse(method, Double.class, listener);
         {{- else if or (eq $method.ReturnType.Name "set") (eq $method.ReturnType.Name "list") }}
-        RpcResponse res = new RpcResponse({{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener, true);
+        RpcResponse res = new RpcResponse(method, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener, true);
         {{- else if eq $method.ReturnType.Name "map" }}
         <!-- map is ignored -->
         {{- else }}
-        String m = "{{ $js.Service.Name }}.{{ $method.Name }}";
-        RpcResponse res = new RpcResponse(m, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener);
+        RpcResponse res = new RpcResponse(method, {{ $method.ReturnType | $js.BaseJava.GetInnerType }}.class, listener);
         {{- end }}
         {{- else }}
-        RpcResponse res = new RpcResponse(m, null, listener);
+        RpcResponse res = new RpcResponse(method, null, listener);
         {{- end }}
 
         final java.util.ArrayList<Object> params = new java.util.ArrayList<>();
@@ -58,7 +58,7 @@ public class {{ .Service.Name}}Service {
 
         java.util.HashMap<String, Object> args = new java.util.HashMap<>();
         args.put("id", 1);
-        args.put("method", m);
+        args.put("method", method);
         args.put("params", params);
 
         RpcRequest req = new RpcRequest(Request.Method.POST, TRpc.getInstance().getJsonRpcUrl(), res, args);
